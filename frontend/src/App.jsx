@@ -80,7 +80,7 @@ function App() {
           }}>
             <GraduationCap color="white" size={24} />
           </div>
-          <h1 style={{ fontSize: '1.5rem', letterSpacing: '-0.5px', fontFamily: 'Outfit' }}>Scholarly AI</h1>
+          <h1 style={{ fontSize: '1.5rem', letterSpacing: '-0.5px', fontFamily: 'Outfit' }}>Examiname</h1>
         </div>
         
         <button className="btn" style={{ 

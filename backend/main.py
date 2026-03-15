@@ -16,7 +16,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    return {"message": "AI Exam Builder API is running"}
+    return {"message": "Examiname API is running"}
 
 @app.post("/api/generate")
 async def generate_from_pdf(file: UploadFile = File(...), num_questions: int = 10):

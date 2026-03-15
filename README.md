@@ -1,4 +1,4 @@
-# AI Exam Builder
+# Examiname
 
 Generador de exámenes inteligente basado en PDFs utilizando Google Gemini AI.
 
