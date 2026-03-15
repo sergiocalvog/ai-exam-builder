@@ -33,17 +33,13 @@ export default function Quiz({ quiz, onRestart }) {
 
   const handleAnswerSelect = (idx) => {
     if (isAnswered) return;
-    setSelectedIdx(idx);
-  };
-
-  const handleConfirm = () => {
-    if (selectedIdx === null || isAnswered) return;
     
-    const correct = selectedIdx === question.correctAnswer;
+    setSelectedIdx(idx);
+    const correct = idx === question.correctAnswer;
     if (correct) setScore(score + 1);
     
     setIsAnswered(true);
-    setUserAnswers([...userAnswers, { questionId: question.id, selected: selectedIdx, correct }]);
+    setUserAnswers([...userAnswers, { questionId: question.id, selected: idx, correct }]);
   };
 
   const handleNext = () => {
@@ -148,13 +144,9 @@ export default function Quiz({ quiz, onRestart }) {
           </div>
         )}
 
-        <div style={{ marginTop: '3.5rem', display: 'flex', justifyContent: 'flex-end' }}>
-          {!isAnswered ? (
-            <button className="btn btn-primary" onClick={handleConfirm} disabled={selectedIdx === null}>
-              Confirmar Respuesta
-            </button>
-          ) : (
-            <button className="btn btn-primary" onClick={handleNext}>
+        <div style={{ marginTop: '3.5rem', display: 'flex', justifyContent: 'flex-end', height: '56px' }}>
+          {isAnswered && (
+            <button className="btn btn-primary animate-fade" onClick={handleNext}>
               {currentIdx < quiz.questions.length - 1 ? 'Siguiente Pregunta' : 'Finalizar Evaluación'} <ArrowRight size={22} />
             </button>
           )}
