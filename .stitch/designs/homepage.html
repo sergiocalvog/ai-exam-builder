@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Exam Builder Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2563EB",
+              "background-light": "#f6f6f8",
+              "background-dark": "#111121",
+              "deep-text": "#0F172A",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"],
+              "outfit": ["Outfit", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-deep-text">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Hero Section with Background -->
+<div class="relative min-h-[600px] w-full bg-cover bg-center px-4 pt-4 pb-20" data-alt="Modern digital library with glowing book shelves" style="background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.1)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzs_Ws9dH_6lellcd0YrEE_XsgXHGMTQmdmelmYMv8tmmO-xszL6BILUN2M5yPO_xTcxh6JrWDWV2da4JMtIIAp6_zaJOapjQzsPj5UW09GFPhjVk4O5TLrQr6lFfIr6IQfprMOh0SmWm2SVi7k7tzT6FmzUGCXhp0Xw046XsdO4OHC8GZkX8OQf90ReG0gr3KFK6oUBmqOvWGKSDMcZMMFb-h95qC-e8FClC8kfxSZDLUaoU02IJWGji_7MkL77a3sBc1qwrPeA');">
+<!-- Transparent Navbar -->
+<nav class="flex items-center justify-between py-4 mb-8">
+<div class="flex items-center gap-2 text-white">
+<span class="material-symbols-outlined text-3xl">school</span>
+<span class="font-outfit text-xl font-bold tracking-tight">Scholarly AI</span>
+</div>
+<button class="rounded-full bg-white/20 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md border border-white/30">
+                    Documentation
+                </button>
+</nav>
+<!-- Headline Section -->
+<div class="mb-8 text-center">
+<h1 class="font-outfit text-4xl font-extrabold leading-[1.1] text-white tracking-tight mb-4">
+                    Transform your PDFs into Intelligent Exams
+                </h1>
+<p class="text-white/90 text-sm max-w-xs mx-auto">
+                    Experience the future of scholarly assessments with AI-driven exam generation.
+                </p>
+</div>
+<!-- Glassmorphism Card -->
+<div class="glass-card rounded-xl p-6 shadow-2xl">
+<!-- Upload Area -->
+<div class="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-primary/40 bg-primary/5 py-10 px-4 text-center">
+<div class="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-3xl">upload_file</span>
+</div>
+<h3 class="text-lg font-bold text-deep-text mb-1">Drag &amp; drop PDF here</h3>
+<p class="text-sm text-slate-500 mb-6">Max file size 25MB</p>
+<button class="rounded-lg bg-primary px-6 py-3 font-bold text-white shadow-lg shadow-primary/30 active:scale-95 transition-transform">
+                        Select PDF
+                    </button>
+</div>
+<!-- Slider Component -->
+<div class="mt-8">
+<div class="flex items-center justify-between mb-3">
+<label class="text-sm font-bold text-deep-text">Question Count</label>
+<span class="rounded-md bg-primary/10 px-2 py-1 text-xs font-bold text-primary">25 Questions</span>
+</div>
+<input class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 accent-primary" max="50" min="10" type="range" value="25"/>
+<div class="flex justify-between mt-2 px-1">
+<span class="text-[10px] text-slate-400 font-medium">10</span>
+<span class="text-[10px] text-slate-400 font-medium">50</span>
+</div>
+</div>
+<!-- Generate Button -->
+<button class="mt-8 w-full rounded-xl bg-primary py-4 text-center font-outfit text-lg font-bold text-white shadow-xl shadow-primary/20 active:opacity-90">
+                    Generate Exam
+                </button>
+</div>
+</div>
+<!-- Recent Activity / Library Section -->
+<div class="flex-1 bg-background-light px-4 py-8">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-outfit text-xl font-bold text-deep-text">Recent Exams</h2>
+<button class="text-sm font-semibold text-primary">View All</button>
+</div>
+<div class="space-y-4">
+<!-- Exam Card 1 -->
+<div class="flex items-center gap-4 rounded-xl bg-white p-4 shadow-sm">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<h4 class="truncate font-bold text-deep-text">Macroeconomics_Final.pdf</h4>
+<p class="text-xs text-slate-400">32 Questions • 2 mins ago</p>
+</div>
+<button class="text-slate-400">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Exam Card 2 -->
+<div class="flex items-center gap-4 rounded-xl bg-white p-4 shadow-sm">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<h4 class="truncate font-bold text-deep-text">Organic_Chemistry_Vol2.pdf</h4>
+<p class="text-xs text-slate-400">15 Questions • 1 hour ago</p>
+</div>
+<button class="text-slate-400">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="sticky bottom-0 z-50 flex border-t border-slate-200 bg-white/90 px-4 pb-8 pt-2 backdrop-blur-md">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">home</span>
+<p class="text-[10px] font-bold tracking-tight">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">description</span>
+<p class="text-[10px] font-medium tracking-tight">My Exams</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<p class="text-[10px] font-medium tracking-tight">Library</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-[10px] font-medium tracking-tight">Settings</p>
+</a>
+</div>
+</div>
+</body></html>
