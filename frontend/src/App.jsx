@@ -80,19 +80,16 @@ function App() {
           }}>
             <GraduationCap color="white" size={24} />
           </div>
-          <h1 style={{ fontSize: '1.5rem', letterSpacing: '-0.5px', fontFamily: 'Outfit' }}>Examiname</h1>
+          <h1 style={{ 
+            fontSize: '1.8rem', 
+            letterSpacing: '-0.02em', 
+            fontFamily: 'var(--font-brand)',
+            fontStyle: 'italic',
+            fontWeight: 700 
+          }}>
+            Examíname
+          </h1>
         </div>
-        
-        <button className="btn" style={{ 
-          background: quiz ? 'rgba(0,0,0,0.05)' : 'rgba(255, 255, 255, 0.2)', 
-          backdropFilter: 'blur(10px)',
-          color: quiz ? 'var(--deep-text)' : 'white',
-          border: '1px solid rgba(255,255,255,0.3)',
-          padding: '0.5rem 1.2rem', 
-          fontSize: '0.9rem' 
-        }}>
-          Documentación
-        </button>
       </nav>
 
       <main>

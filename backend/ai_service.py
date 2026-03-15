@@ -19,7 +19,7 @@ Eres un experto en educación. A partir del siguiente texto extraído de un PDF,
 
 El JSON debe tener la siguiente estructura:
 {{
-  "title": "Examen de Examiname",
+  "title": "Evaluación de Examíname",
   "questions": [
     {{
       "id": 1,
