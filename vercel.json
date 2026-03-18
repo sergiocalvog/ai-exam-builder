@@ -1,9 +1,7 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "functions": {
-    "api/generate.py": {
-      "runtime": "python3.12"
-    }
-  }
+  "builds": [
+    { "src": "api/**/*.py", "use": "@vercel/python" }
+  ]
 }
