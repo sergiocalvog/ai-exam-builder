@@ -24,3 +24,5 @@ temp_repo/
 
 # Old node_modules
 node_modules_old_*/
+
+.vercel
