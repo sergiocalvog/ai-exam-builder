@@ -1,6 +1,7 @@
 {
-  "buildCommand": "bash build.sh",
-  "outputDirectory": "frontend/dist",
+  "rootDirectory": "frontend",
+  "buildCommand": "npm install && npm run build",
+  "outputDirectory": "dist",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/generate.py" }
   ]
