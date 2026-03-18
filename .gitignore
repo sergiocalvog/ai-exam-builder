@@ -18,3 +18,9 @@ dist/
 
 # Backend specific
 backend/.env
+
+# Vercel
+temp_repo/
+
+# Old node_modules
+node_modules_old_*/

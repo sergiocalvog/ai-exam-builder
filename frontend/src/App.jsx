@@ -32,7 +32,7 @@ function App() {
     formData.append('file', file);
 
     try {
-      const response = await fetch(`http://localhost:8000/api/generate?num_questions=${numQuestions}`, {
+      const response = await fetch(`/api/generate?num_questions=${numQuestions}`, {
         method: 'POST',
         body: formData,
       });
