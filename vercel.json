@@ -1,5 +1,7 @@
 {
-  "routes": [
-    { "src": "/api/generate", "dest": "/api/generate.py" }
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
+  "rewrites": [
+    { "source": "/api/generate", "destination": "/api/generate.py" }
   ]
 }
