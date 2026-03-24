@@ -2,6 +2,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/api/generate", "destination": "/api/main.py" }
+    { "source": "/api/(.*)", "destination": "/api/index.py" }
+  ],
+  "builds": [
+    { "src": "api/index.py", "use": "@vercel/python" }
   ]
 }
