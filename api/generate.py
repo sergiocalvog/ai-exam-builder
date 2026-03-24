@@ -10,7 +10,13 @@ from ai_service import generate_quiz
 
 app = FastAPI()
 
+@app.get("/api/generate")
+@app.get("/")
+async def root():
+    return {"message": "API generate function is running"}
+
 @app.post("/api/generate")
+@app.post("/")
 async def generate(file: UploadFile = File(...), num_questions: int = 10):
     if not file.filename.endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are allowed")
