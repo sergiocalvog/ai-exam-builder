@@ -19,6 +19,14 @@ async def log_requests(request, call_next):
 async def health_check():
     return {"status": "ok", "message": "API generate function is running", "env_key_present": bool(os.getenv("GEMINI_API_KEY"))}
 
+@app.api_route("/{path:path}", methods=["GET", "POST", "OPTIONS"])
+async def catch_all(path: str = "", file: UploadFile = File(None), num_questions: int = 10):
+    # This catch-all handles both the root (Vercel) and any subpaths
+    if path in ["", "api/generate", "/"] and file:
+        return await generate(file, num_questions)
+    
+    return {"status": "ok", "message": f"API generate function is running at path: {path}", "env_key_present": bool(os.getenv("GEMINI_API_KEY"))}
+
 @app.post("/")
 async def generate(file: UploadFile = File(...), num_questions: int = 10):
     if not file.filename.endswith(".pdf"):

@@ -3,3 +3,5 @@ google-generativeai
 fastapi
 python-multipart
 python-dotenv
+pydantic
+uvicorn
