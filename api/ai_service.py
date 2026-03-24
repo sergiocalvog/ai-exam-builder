@@ -1,14 +1,15 @@
-import os
-import json
-from dotenv import load_dotenv
-
-# Try to load from root first, then local
+# Configure API key locally from .env if present
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+api_key = os.getenv("GEMINI_API_KEY")
+if api_key:
+    genai.configure(api_key=api_key)
+    print("DEBUG: IA configurada correctamente con GEMINI_API_KEY")
+else:
+    print("WARNING: GEMINI_API_KEY no encontrada en las variables de entorno")
 
-model = genai.GenerativeModel("gemini-2.0-flash")
+model = genai.GenerativeModel("gemini-flash-latest")
 
 PROMPT_TEMPLATE = """
 Eres un experto en educación. A partir del siguiente texto extraído de un PDF, genera un examen de opción múltiple en formato JSON.
