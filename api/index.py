@@ -18,6 +18,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.middleware("http")
+async def log_requests(request, call_next):
+    print(f"DEBUG: Request to {request.url.path} [{request.method}]")
+    response = await call_next(request)
+    return response
+
 @app.get("/api/generate")
 @app.get("/")
 async def health_check():
