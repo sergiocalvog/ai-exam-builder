@@ -1,5 +1,5 @@
 pymupdf
-google-genai
+google-generativeai
 fastapi
 python-multipart
 python-dotenv

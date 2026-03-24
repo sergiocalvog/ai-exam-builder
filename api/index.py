@@ -4,7 +4,7 @@ import io
 import fitz  # PyMuPDF
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from google import genai
+import google.generativeai as genai
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -32,7 +32,7 @@ def extract_text(stream):
         print(f"PDF Error: {e}")
         return None
 
-# AI Service logic (Inlined with modern google-genai)
+# AI Service logic (Inlined with classic google-generativeai)
 PROMPT_TEMPLATE = """
 Eres un experto en educación. A partir del siguiente texto extraído de un PDF, genera un examen de opción múltiple en formato JSON.
 
@@ -87,15 +87,14 @@ async def generate(file: UploadFile = File(...), num_questions: int = 10):
         if not text:
             raise HTTPException(status_code=400, detail="Could not extract text from PDF")
             
-        # 2. Setup AI Client
-        client = genai.Client(api_key=api_key)
+        # 2. Setup AI (Classic Syntax)
+        genai.configure(api_key=api_key)
+        model = genai.GenerativeModel("gemini-1.5-flash")
+        
         prompt = PROMPT_TEMPLATE.format(text=text[:15000]) + f"\nIMPORTANTE: Genera exactamente {num_questions} preguntas."
         
         # 3. Generate content
-        response = client.models.generate_content(
-            model="gemini-1.5-flash",
-            contents=prompt
-        )
+        response = model.generate_content(prompt)
         
         content = response.text
         # Robust JSON extraction
