@@ -4,7 +4,7 @@ import io
 import fitz  # PyMuPDF
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-import google.generativeai as genai
+from google import genai
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -20,7 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# PDF service logic (Inlined)
+# PDF extraction logic (inlined)
 def extract_text(stream):
     try:
         doc = fitz.open(stream=stream, filetype="pdf")
@@ -32,7 +32,6 @@ def extract_text(stream):
         print(f"PDF Error: {e}")
         return None
 
-# AI Service logic (Inlined with classic google-generativeai)
 PROMPT_TEMPLATE = """
 Eres un experto en educación. A partir del siguiente texto extraído de un PDF, genera un examen de opción múltiple en formato JSON.
 
@@ -65,8 +64,8 @@ TEXTO:
 @app.get("/")
 async def health():
     return {
-        "status": "ok", 
-        "message": "AI Exam Builder API is running",
+        "status": "ok",
+        "message": "AI Exam Builder API is running with google-genai (v1)",
         "env_key_present": bool(os.getenv("GEMINI_API_KEY"))
     }
 
@@ -75,42 +74,44 @@ async def health():
 async def generate(file: UploadFile = File(...), num_questions: int = 10):
     if not file.filename.endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are allowed")
-    
+
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise HTTPException(status_code=500, detail="GEMINI_API_KEY not configured in Vercel")
 
     try:
-        # 1. Read PDF
+        # 1. Extract text from PDF
         contents = await file.read()
         text = extract_text(contents)
         if not text:
             raise HTTPException(status_code=400, detail="Could not extract text from PDF")
-            
-        # 2. Setup AI (Classic Syntax)
-        genai.configure(api_key=api_key)
-        model = genai.GenerativeModel("gemini-pro")
-        
+
+        # 2. Build prompt
         prompt = PROMPT_TEMPLATE.format(text=text[:15000]) + f"\nIMPORTANTE: Genera exactamente {num_questions} preguntas."
-        
-        # 3. Generate content
-        response = model.generate_content(prompt)
-        
+
+        # 3. Call Gemini via new google-genai SDK (uses v1 API)
+        client = genai.Client(api_key=api_key)
+        response = client.models.generate_content(
+            model="gemini-1.5-flash",
+            contents=prompt
+        )
+
         content = response.text
+        print(f"DEBUG: Raw response length = {len(content)}")
+
         # Robust JSON extraction
         if "```json" in content:
             content = content.split("```json")[1].split("```")[0].strip()
         elif "```" in content:
             content = content.split("```")[1].split("```")[0].strip()
-        
-        # Strip any leading/trailing non-JSON characters
+
         start = content.find('{')
         end = content.rfind('}') + 1
         if start != -1 and end != 0:
             content = content[start:end]
-            
+
         return json.loads(content)
-        
+
     except Exception as e:
         print(f"Critical Server Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
