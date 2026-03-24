@@ -89,7 +89,7 @@ async def generate(file: UploadFile = File(...), num_questions: int = 10):
             
         # 2. Setup AI (Classic Syntax)
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-pro")
         
         prompt = PROMPT_TEMPLATE.format(text=text[:15000]) + f"\nIMPORTANTE: Genera exactamente {num_questions} preguntas."
         
