@@ -1,3 +1,8 @@
+import os
+import json
+import google.generativeai as genai
+from dotenv import load_dotenv
+
 # Configure API key locally from .env if present
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
