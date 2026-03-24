@@ -1,6 +1,10 @@
 import os
 import json
-import google.generativeai as genai
+from dotenv import load_dotenv
+
+# Try to load from root first, then local
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 

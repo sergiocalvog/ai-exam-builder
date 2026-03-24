@@ -8,7 +8,7 @@
   --surface: #f8fafc;
   --deep-text: #0f172a;
   --text-low: #475569;
-  --font-brand: 'Playfair Display', serif;
+  --font-brand: 'Outfit', sans-serif;
   --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(0, 0, 0, 0.08);
   --radius-lg: 24px;
@@ -108,9 +108,26 @@ h1, h2, h3, h4 {
               url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2070');
   background-size: cover;
   background-position: center;
-  color: #ffffff;
   padding: 8rem 2rem;
   text-align: center;
+}
+
+.hero-title {
+  color: #ffffff;
+  font-size: 4.5rem;
+  margin-bottom: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto 1.5rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.4rem;
+  max-width: 750px;
+  margin: 0 auto 4rem;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 /* Contrast enhancement for dark mode text */

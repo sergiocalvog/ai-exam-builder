@@ -1,2 +1,5 @@
 pymupdf
 google-generativeai
+fastapi
+python-multipart
+python-dotenv

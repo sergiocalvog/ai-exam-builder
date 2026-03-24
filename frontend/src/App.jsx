@@ -84,8 +84,8 @@ function App() {
             fontSize: '1.8rem', 
             letterSpacing: '-0.02em', 
             fontFamily: 'var(--font-brand)',
-            fontStyle: 'italic',
-            fontWeight: 700 
+            fontStyle: 'normal', // Removed italic for cleaner look, as it's Outfit now
+            fontWeight: 800 
           }}>
             Examíname
           </h1>
@@ -96,10 +96,10 @@ function App() {
         {!loading && !quiz && (
           <div className="animate-fade">
             <div className="hero-bg">
-              <h1 style={{ fontSize: '4.5rem', marginBottom: '1.5rem', maxWidth: '1000px', margin: '0 auto 1.5rem' }}>
+              <h1 className="hero-title">
                 Transforma tus PDFs en <span style={{ color: 'white', textDecoration: 'underline', textDecorationColor: 'var(--primary)' }}>Exámenes Inteligentes</span>
               </h1>
-              <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.4rem', maxWidth: '750px', margin: '0 auto 4rem', fontWeight: 500 }}>
+              <p className="hero-subtitle">
                 Experimenta el futuro de las evaluaciones académicas con generación por IA de última generación.
               </p>
               <UploadZone onUpload={handleFileUpload} />
