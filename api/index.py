@@ -8,6 +8,10 @@ sys.path.insert(0, os.path.dirname(__file__))
 from pdf_service import extract_text_from_pdf
 from ai_service import generate_quiz
 
+# Fallback for API key if environment variable is missing (not recommended for production but helpful for debug)
+if not os.getenv("GEMINI_API_KEY"):
+    os.environ["GEMINI_API_KEY"] = "AIzaSyDgSRCwcR6V62eDbXLi0UZwqsBk7YP7Plo"
+
 app = FastAPI()
 
 app.add_middleware(
@@ -27,9 +31,15 @@ async def log_requests(request, call_next):
 @app.get("/api/generate")
 @app.get("/")
 async def health_check():
-    return {"status": "ok", "message": "AI Exam Builder API is running"}
+    return {"status": "ok", "message": "AI Exam Builder API is running", "env_key_present": bool(os.getenv("GEMINI_API_KEY"))}
+
+@app.api_route("/{path_name:path}", methods=["GET", "POST", "OPTIONS"])
+async def catch_all(path_name: str):
+    print(f"DEBUG: Catch-all reached with path: {path_name}")
+    return {"message": "You reached the catch-all", "path": path_name}
 
 @app.post("/api/generate")
+@app.post("/")
 async def generate(file: UploadFile = File(...), num_questions: int = 10):
     if not file.filename.endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are allowed")
