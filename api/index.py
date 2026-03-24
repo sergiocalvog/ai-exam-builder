@@ -1,5 +1,5 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 import sys
 import os
 
@@ -10,13 +10,20 @@ from ai_service import generate_quiz
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/api/generate")
 @app.get("/")
-async def root():
-    return {"message": "API generate function is running"}
+async def health_check():
+    return {"status": "ok", "message": "AI Exam Builder API is running"}
 
 @app.post("/api/generate")
-@app.post("/")
 async def generate(file: UploadFile = File(...), num_questions: int = 10):
     if not file.filename.endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are allowed")
@@ -37,6 +44,3 @@ async def generate(file: UploadFile = File(...), num_questions: int = 10):
     except Exception as e:
         print(f"Server Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
-
-# Entry point for Vercel legacy or direct execution
-handler = app
