@@ -92,7 +92,7 @@ async def generate(file: UploadFile = File(...), num_questions: int = 10):
         # 3. Call Gemini via new google-genai SDK (uses v1 API)
         client = genai.Client(api_key=api_key)
         response = client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-2.0-flash",
             contents=prompt
         )
 
