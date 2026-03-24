@@ -1,10 +1,4 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "rewrites": [
-    { "source": "/api/generate", "destination": "api/generate.py" }
-  ],
-  "builds": [
-    { "src": "api/generate.py", "use": "@vercel/python" }
-  ]
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist"
 }
